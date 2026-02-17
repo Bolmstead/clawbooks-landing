@@ -1,15 +1,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #080b0f;
-  --bg2: #0e1217;
-  --bg3: #141920;
-  --border: rgba(255,255,255,0.08);
-  --accent: #00D4AA;
-  --accent2: #00b891;
-  --text: #f0f4f8;
-  --muted: #8896a4;
-  --card: rgba(255,255,255,0.04);
+  --bg: #ffffff;
+  --bg2: #f7fbf9;
+  --bg3: #ffffff;
+  --border: rgba(12, 38, 26, 0.14);
+  --accent: #37c26f;
+  --accent2: #2fa55e;
+  --text: #0b1d14;
+  --muted: #547164;
+  --card: #ffffff;
 }
 
 html { scroll-behavior: smooth; }
@@ -24,4 +24,4 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-::selection { background: rgba(0,212,170,0.3); }
+::selection { background: rgba(55, 194, 111, 0.3); }
