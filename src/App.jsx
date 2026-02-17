@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-const logoSrc = `${import.meta.env.BASE_URL}clawbooks-logo.png`;
+const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
 const markSrc = `${import.meta.env.BASE_URL}favicon.svg`;
 
 // ─── Hooks ───────────────────────────────────────────────────────────────────
