@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
+const logoSrc = `${import.meta.env.BASE_URL}clawbooks-logo.svg`
+const markSrc = `${import.meta.env.BASE_URL}favicon.svg`
+
 // ─── Hooks ───────────────────────────────────────────────────────────────────
 
 function useInView(threshold = 0.15) {
@@ -29,8 +32,7 @@ function Navbar() {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
         <div className="logo">
-          <span className="logo-claw">🦞</span>
-          <span className="logo-text">Claw<span className="logo-accent">Books</span></span>
+          <img className="logo-image logo-image-nav" src={logoSrc} alt="ClawBooks" />
         </div>
         <div className="nav-links">
           <a href="#features">Features</a>
@@ -232,7 +234,9 @@ function TelegramMockup() {
             <div className="phone-notch" />
             <div className="phone-screen">
               <div className="tg-header">
-                <div className="tg-avatar">🦞</div>
+                <div className="tg-avatar">
+                  <img src={markSrc} alt="ClawBooks logo mark" />
+                </div>
                 <div>
                   <div className="tg-name">ClawBooks</div>
                   <div className="tg-status">bot</div>
@@ -295,8 +299,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-logo">
-          <span className="logo-claw">🦞</span>
-          <span className="logo-text">Claw<span className="logo-accent">Books</span></span>
+          <img className="logo-image logo-image-footer" src={logoSrc} alt="ClawBooks" />
           <span className="footer-tagline">AI accounting for modern teams</span>
         </div>
         <div className="footer-links">

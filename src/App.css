@@ -50,9 +50,10 @@
   max-width: 1200px; margin: 0 auto; padding: 0 24px;
   display: flex; align-items: center; gap: 32px;
 }
-.logo { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 800; }
-.logo-claw { font-size: 22px; }
-.logo-accent { color: var(--accent); }
+.logo { display: flex; align-items: center; flex-shrink: 0; }
+.logo-image { display: block; width: auto; }
+.logo-image-nav { height: 44px; }
+.logo-image-footer { height: 54px; }
 .nav-links { display: flex; gap: 28px; flex: 1; }
 .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover { color: var(--text); }
@@ -193,8 +194,9 @@
 }
 .tg-avatar {
   width: 36px; height: 36px; border-radius: 50%; background: rgba(0,212,170,0.2);
-  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
 }
+.tg-avatar img { width: 26px; height: 26px; display: block; object-fit: contain; }
 .tg-name { font-size: 14px; font-weight: 600; }
 .tg-status { font-size: 11px; color: var(--accent); }
 .tg-messages { padding: 16px; }
@@ -248,8 +250,8 @@
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 .footer { border-top: 1px solid var(--border); padding: 48px 0; }
 .footer-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; }
-.footer-logo { display: flex; align-items: center; gap: 10px; flex: 1; }
-.footer-tagline { color: var(--muted); font-size: 13px; margin-left: 8px; }
+.footer-logo { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; flex: 1; }
+.footer-tagline { color: var(--muted); font-size: 13px; }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { color: var(--muted); font-size: 14px; transition: color 0.2s; }
 .footer-links a:hover { color: var(--text); }
@@ -277,6 +279,7 @@
   .hero-visual { order: -1; }
   .mock-dashboard { max-width: 400px; margin: 0 auto; }
   .nav-links, .nav-cta { display: none; }
+  .logo-image-nav { height: 40px; }
   .hamburger { display: flex; }
 }
 @media (max-width: 600px) {
