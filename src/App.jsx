@@ -35,7 +35,6 @@ function Navbar() {
         <div className="nav-links">
           <a href="#features">Features</a>
           <a href="#how-it-works">How It Works</a>
-          <a href="#pricing">Pricing</a>
         </div>
         <a href="#cta" className="btn-primary nav-cta">Get Early Access</a>
         <button className="hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
@@ -48,7 +47,6 @@ function Navbar() {
         <div className="mobile-menu">
           <a href="#features" onClick={close}>Features</a>
           <a href="#how-it-works" onClick={close}>How It Works</a>
-          <a href="#pricing" onClick={close}>Pricing</a>
           <a href="#cta" className="btn-primary" onClick={close}>Get Early Access</a>
         </div>
       )}
@@ -121,7 +119,7 @@ function Hero() {
             <a href="#cta" className="btn-primary btn-lg">Get Early Access →</a>
             <a href="#how-it-works" className="btn-ghost btn-lg">See How It Works</a>
           </div>
-          <p className="hero-note">Free to start · No credit card required</p>
+          <p className="hero-note">Pricing coming soon · Join the waitlist for launch access</p>
         </div>
         <div className="hero-visual">
           <MockDashboard />
@@ -265,53 +263,6 @@ function TelegramMockup() {
   )
 }
 
-// ─── Pricing ─────────────────────────────────────────────────────────────────
-
-function Pricing() {
-  const [ref, inView] = useInView()
-  const plans = [
-    {
-      name: 'Starter', price: 'Free', period: 'forever', popular: false,
-      features: ['10 invoices/month', 'iCloud & Gmail', 'Telegram approvals', 'QuickBooks sync', 'Audit log'],
-      cta: 'Get Started Free'
-    },
-    {
-      name: 'Pro', price: '$29', period: '/month', popular: true,
-      features: ['Unlimited invoices', 'All email providers', 'Telegram approvals', 'QuickBooks sync', 'Priority support', 'Excel reports', 'Auto-approve rules'],
-      cta: 'Start Free Trial'
-    },
-    {
-      name: 'Enterprise', price: 'Custom', period: '', popular: false,
-      features: ['Everything in Pro', 'White-label option', 'API access', 'Dedicated support', 'SLA guarantee', 'Custom integrations'],
-      cta: 'Contact Sales'
-    },
-  ]
-  return (
-    <section className="section section-dark" id="pricing" ref={ref}>
-      <div className="container">
-        <div className={`section-header fade-in ${inView ? 'visible' : ''}`}>
-          <div className="section-tag">Pricing</div>
-          <h2>Simple, transparent pricing</h2>
-          <p className="section-sub">Start free. Upgrade when you're ready.</p>
-        </div>
-        <div className="pricing-grid">
-          {plans.map((p, i) => (
-            <div key={p.name} className={`pricing-card fade-in ${p.popular ? 'popular' : ''} ${inView ? 'visible' : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
-              {p.popular && <div className="popular-badge">Most Popular</div>}
-              <div className="plan-name">{p.name}</div>
-              <div className="plan-price">{p.price}<span className="plan-period">{p.period}</span></div>
-              <ul className="plan-features">
-                {p.features.map(f => <li key={f}><span className="check">✓</span>{f}</li>)}
-              </ul>
-              <a href="#cta" className={p.popular ? 'btn-primary' : 'btn-outline'}>{p.cta}</a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── CTA ─────────────────────────────────────────────────────────────────────
 
 function CTA() {
@@ -351,7 +302,6 @@ function Footer() {
         <div className="footer-links">
           <a href="#features">Features</a>
           <a href="#how-it-works">How It Works</a>
-          <a href="#pricing">Pricing</a>
           <a href="https://openclaw.ai">Built on OpenClaw</a>
         </div>
         <div className="footer-copy">© 2026 ClawBooks. All rights reserved.</div>
@@ -371,7 +321,6 @@ export default function App() {
       <Features />
       <HowItWorks />
       <TelegramMockup />
-      <Pricing />
       <CTA />
       <Footer />
     </>
