@@ -36,16 +36,14 @@ function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-inner">
-        <div className="logo">
-          <img
-            className="logo-image logo-image-nav"
-            src={logoSrc}
-            alt="ClawBooks"
-          />
-        </div>
+        <a href="#" className="logo" aria-label="ClawBooks home">
+          <img className="logo-image logo-image-nav" src={logoSrc} alt="" />
+          <span className="app-title">ClawBooks</span>
+        </a>
         <div className="nav-links">
           <a href="#features">Features</a>
           <a href="#how-it-works">How It Works</a>
+          <a href="#extension">Extension</a>
         </div>
         <a href="#cta" className="btn-primary nav-cta">
           Get Early Access
@@ -62,15 +60,10 @@ function Navbar() {
       </div>
       {menuOpen && (
         <div className="mobile-menu">
-          <a href="#features" onClick={close}>
-            Features
-          </a>
-          <a href="#how-it-works" onClick={close}>
-            How It Works
-          </a>
-          <a href="#cta" className="btn-primary" onClick={close}>
-            Get Early Access
-          </a>
+          <a href="#features" onClick={close}>Features</a>
+          <a href="#how-it-works" onClick={close}>How It Works</a>
+          <a href="#extension" onClick={close}>Extension</a>
+          <a href="#cta" className="btn-primary" onClick={close}>Get Early Access</a>
         </div>
       )}
     </nav>
@@ -86,18 +79,12 @@ function MockDashboard() {
     return () => clearInterval(t);
   }, []);
   const steps = ["scanning", "extracting", "ready"];
-  const labels = [
-    "Scanning inbox…",
-    "AI extracting data…",
-    "✓ Ready for approval",
-  ];
+  const labels = ["Scanning inbox…", "AI extracting data…", "✓ Ready for approval"];
   return (
     <div className="mock-dashboard">
       <div className="mock-header">
         <div className="mock-dots">
-          <span />
-          <span />
-          <span />
+          <span /><span /><span />
         </div>
         <span className="mock-title">ClawBooks Dashboard</span>
       </div>
@@ -115,8 +102,8 @@ function MockDashboard() {
           <span className="mock-value accent">$2,450.00</span>
         </div>
         <div className="mock-invoice-row">
-          <span className="mock-label">Category</span>
-          <span className="mock-value">Web Design Services</span>
+          <span className="mock-label">Received via</span>
+          <span className="mock-value">📧 Email</span>
         </div>
       </div>
       <div className={`mock-status ${steps[step]}`}>
@@ -145,15 +132,13 @@ function Hero() {
           </h1>
           <p className="hero-sub">
             ClawBooks watches your inbox, reads every invoice with AI, and posts
-            to QuickBooks — you just tap <strong>Approve</strong> on Telegram.
+            to QuickBooks — approve in one tap on{" "}
+            <strong>Telegram</strong> or right inside{" "}
+            <strong>QuickBooks</strong> via our Chrome extension.
           </p>
           <div className="hero-actions">
-            <a href="#cta" className="btn-primary btn-lg">
-              Get Early Access →
-            </a>
-            <a href="#how-it-works" className="btn-ghost btn-lg">
-              See How It Works
-            </a>
+            <a href="#cta" className="btn-primary btn-lg">Get Early Access →</a>
+            <a href="#how-it-works" className="btn-ghost btn-lg">See How It Works</a>
           </div>
           <p className="hero-note">
             Pricing coming soon · Join the waitlist for launch access
@@ -170,15 +155,13 @@ function Hero() {
 // ─── Logo Bar ────────────────────────────────────────────────────────────────
 
 function LogoBar() {
-  const logos = ["QuickBooks", "iCloud Mail", "Gmail", "Telegram", "OpenClaw"];
+  const logos = ["QuickBooks", "iCloud Mail", "Gmail", "Telegram", "Chrome Extension", "OpenClaw"];
   return (
     <div className="logo-bar">
       <span className="logo-bar-label">Works with</span>
       <div className="logo-bar-items">
         {logos.map((l) => (
-          <span key={l} className="logo-pill">
-            {l}
-          </span>
+          <span key={l} className="logo-pill">{l}</span>
         ))}
       </div>
     </div>
@@ -193,22 +176,32 @@ function Features() {
     {
       icon: "📧",
       title: "Email Monitoring",
-      desc: "Watches your inbox 24/7 for invoices, bills, and receipts. iCloud, Gmail, or any IMAP account.",
+      desc: "Watches your inbox 24/7 for invoices, bills, and receipts — via IMAP IDLE for instant detection. Works with iCloud, Gmail, or any IMAP account.",
     },
     {
       icon: "🤖",
       title: "AI Extraction",
-      desc: "Reads every invoice and extracts vendor, amount, line items, and due dates automatically.",
+      desc: "Reads every invoice and extracts vendor, amount, due date, and line items automatically. Each proposal includes how it was received — email, manual upload, or API.",
     },
     {
-      icon: "✅",
-      title: "Human Approval",
-      desc: "Get a Telegram message before anything posts. Review and approve or reject in seconds. You stay in control.",
+      icon: "📱",
+      title: "Telegram Approvals",
+      desc: "Get a Telegram notification the moment an invoice arrives. Tap ✅ or ❌ on the inline buttons — no dashboard login required. Your AI (Alfred) processes the response instantly.",
+    },
+    {
+      icon: "🧩",
+      title: "Chrome Extension",
+      desc: "A sidebar lives directly inside QuickBooks Online. See pending proposals, approve or reject, and view your audit log without ever leaving QB.",
     },
     {
       icon: "📊",
       title: "QuickBooks Sync",
-      desc: "Approved transactions post directly to your QB account with full audit log and idempotency protection.",
+      desc: "Approved transactions post directly to your QB account — bills, vendors, and line items — with full audit log and idempotency protection against duplicates.",
+    },
+    {
+      icon: "🔁",
+      title: "Smart Automation",
+      desc: "Recurring vendors get recognized over time. Auto-approve rules, anomaly detection, and duplicate guards mean fewer interruptions as ClawBooks learns your patterns.",
     },
   ];
   return (
@@ -226,7 +219,7 @@ function Features() {
             <div
               key={f.title}
               className={`feature-card fade-in ${inView ? "visible" : ""}`}
-              style={{ transitionDelay: `${i * 0.1}s` }}
+              style={{ transitionDelay: `${i * 0.08}s` }}
             >
               <div className="feature-icon">{f.icon}</div>
               <h3>{f.title}</h3>
@@ -247,17 +240,22 @@ function HowItWorks() {
     {
       n: "01",
       title: "Invoice arrives in your email",
-      desc: "ClawBooks monitors your connected inbox and detects new invoices automatically.",
+      desc: "ClawBooks monitors your connected inbox via IMAP IDLE. The moment an invoice lands, it's detected — no polling delays.",
     },
     {
       n: "02",
       title: "AI reads and proposes a transaction",
-      desc: "Our AI extracts all fields and builds a QuickBooks transaction with confidence scoring.",
+      desc: "Our AI extracts vendor, amount, due date, and line items, then builds a QuickBooks-ready transaction with full source context.",
     },
     {
       n: "03",
-      title: "You approve on Telegram in seconds",
-      desc: "Tap Approve and it posts instantly. Tap Reject and it's discarded. Full audit trail either way.",
+      title: "You approve on Telegram or in QuickBooks",
+      desc: "Get a Telegram notification with ✅ ❌ inline buttons — tap once and it posts. Or use the Chrome extension sidebar to review and approve directly inside QuickBooks Online.",
+    },
+    {
+      n: "04",
+      title: "Posted to QuickBooks instantly",
+      desc: "Approved transactions are posted with a full audit trail. Rejected proposals are logged. ClawBooks learns your patterns over time.",
     },
   ];
   return (
@@ -265,7 +263,7 @@ function HowItWorks() {
       <div className="container">
         <div className={`section-header fade-in ${inView ? "visible" : ""}`}>
           <div className="section-tag">How It Works</div>
-          <h2>Three steps. That's it.</h2>
+          <h2>Four steps. That's it.</h2>
         </div>
         <div className="steps">
           {steps.map((s, i) => (
@@ -297,17 +295,18 @@ function TelegramMockup() {
     <section className="section" ref={ref}>
       <div className="container mockup-section">
         <div className={`mockup-text fade-in ${inView ? "visible" : ""}`}>
-          <div className="section-tag">Approval Flow</div>
+          <div className="section-tag">Telegram Approvals</div>
           <h2>Approve invoices right from Telegram</h2>
           <p>
             No dashboards to log into. No emails to reply to. Just a tap, and
-            it's done.
+            it's done — your AI agent handles the rest.
           </p>
           <ul className="mockup-list">
             <li>✓ Instant notification on every new invoice</li>
-            <li>✓ Full invoice details in the message</li>
-            <li>✓ One-tap approve or reject</li>
-            <li>✓ Confirmation when posted to QuickBooks</li>
+            <li>✓ Source context — know if it came via email or manual upload</li>
+            <li>✓ Full invoice details: vendor, amount, subject, due date</li>
+            <li>✓ One-tap ✅ ❌ inline buttons — no typing required</li>
+            <li>✓ Confirmation sent when posted to QuickBooks</li>
           </ul>
         </div>
         <div
@@ -328,49 +327,163 @@ function TelegramMockup() {
               </div>
               <div className="tg-messages">
                 <div className="tg-msg">
-                  <div className="tg-msg-title">📄 New Invoice Detected</div>
+                  <div className="tg-msg-title">📋 Pending QuickBooks approval</div>
+                  <div className="tg-msg-row">
+                    <span>Received via</span>
+                    <strong>📧 Email</strong>
+                  </div>
                   <div className="tg-msg-row">
                     <span>From</span>
-                    <strong>Acme Design Co.</strong>
+                    <strong>billing@acme.com</strong>
+                  </div>
+                  <div className="tg-msg-row">
+                    <span>Subject</span>
+                    <strong>Invoice INV-1042</strong>
                   </div>
                   <div className="tg-msg-row">
                     <span>Amount</span>
                     <strong className="accent">$2,450.00</strong>
                   </div>
                   <div className="tg-msg-row">
-                    <span>Category</span>
-                    <strong>Web Design</strong>
-                  </div>
-                  <div className="tg-msg-row">
                     <span>Due</span>
-                    <strong>Mar 1, 2026</strong>
+                    <strong>March 1, 2026</strong>
                   </div>
                   {approved === null && (
                     <div className="tg-btns">
-                      <button
-                        className="tg-approve"
-                        onClick={() => setApproved(true)}
-                      >
-                        ✓ Approve
-                      </button>
-                      <button
-                        className="tg-reject"
-                        onClick={() => setApproved(false)}
-                      >
-                        ✕ Reject
-                      </button>
+                      <button className="tg-approve" onClick={() => setApproved(true)}>✅</button>
+                      <button className="tg-reject" onClick={() => setApproved(false)}>❌</button>
                     </div>
                   )}
                   {approved === true && (
-                    <div className="tg-confirmed">✅ Posted to QuickBooks!</div>
+                    <div className="tg-confirmed">✅ Approved and posted to QuickBooks!</div>
                   )}
                   {approved === false && (
-                    <div className="tg-rejected">❌ Invoice rejected</div>
+                    <div className="tg-rejected">❌ Proposal rejected.</div>
                   )}
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Chrome Extension Section ────────────────────────────────────────────────
+
+function ExtensionMockup() {
+  const [ref, inView] = useInView();
+  const [activeTab, setActiveTab] = useState("pending");
+  const proposals = [
+    { vendor: "Acme Design Co.", amount: "$2,450.00", via: "📧 Email", status: "pending" },
+    { vendor: "Adobe Inc.", amount: "$54.99", via: "📧 Email", status: "pending" },
+    { vendor: "Figma", amount: "$45.00", via: "📧 Email", status: "pending" },
+  ];
+  return (
+    <section className="section section-dark" id="extension" ref={ref}>
+      <div className="container mockup-section mockup-section-reverse">
+        <div
+          className={`extension-wrap fade-in ${inView ? "visible" : ""}`}
+        >
+          <div className="browser-chrome">
+            <div className="browser-bar">
+              <div className="browser-dots">
+                <span /><span /><span />
+              </div>
+              <div className="browser-url">app.qbo.intuit.com/app/bills</div>
+              <div className="browser-ext-badge">🧩 ClawBooks</div>
+            </div>
+            <div className="browser-content">
+              <div className="qb-sidebar-mock">
+                <div className="qb-page-bg">
+                  <div className="qb-placeholder-line" />
+                  <div className="qb-placeholder-line short" />
+                  <div className="qb-placeholder-line" />
+                  <div className="qb-placeholder-line short" />
+                </div>
+                <div className="claw-sidebar">
+                  <div className="sidebar-header">
+                    <img src={markSrc} alt="" className="sidebar-logo" />
+                    <span className="sidebar-title">ClawBooks</span>
+                    <span className="sidebar-badge">{proposals.length}</span>
+                  </div>
+                  <div className="sidebar-tabs">
+                    <button
+                      className={activeTab === "pending" ? "stab active" : "stab"}
+                      onClick={() => setActiveTab("pending")}
+                    >
+                      Pending
+                    </button>
+                    <button
+                      className={activeTab === "history" ? "stab active" : "stab"}
+                      onClick={() => setActiveTab("history")}
+                    >
+                      History
+                    </button>
+                  </div>
+                  {activeTab === "pending" && (
+                    <div className="sidebar-proposals">
+                      {proposals.map((p, i) => (
+                        <div key={i} className="sidebar-proposal">
+                          <div className="sp-vendor">{p.vendor}</div>
+                          <div className="sp-meta">
+                            <span className="sp-amount">{p.amount}</span>
+                            <span className="sp-via">{p.via}</span>
+                          </div>
+                          <div className="sp-actions">
+                            <button className="sp-approve">✓ Approve</button>
+                            <button className="sp-reject">✕</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {activeTab === "history" && (
+                    <div className="sidebar-proposals">
+                      <div className="sidebar-proposal approved-row">
+                        <div className="sp-vendor">Notion</div>
+                        <div className="sp-meta">
+                          <span className="sp-amount">$16.00</span>
+                          <span className="sp-approved-label">✅ Approved</span>
+                        </div>
+                      </div>
+                      <div className="sidebar-proposal rejected-row">
+                        <div className="sp-vendor">Unknown Vendor</div>
+                        <div className="sp-meta">
+                          <span className="sp-amount">$999.00</span>
+                          <span className="sp-rejected-label">❌ Rejected</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`mockup-text fade-in ${inView ? "visible" : ""}`} style={{ transitionDelay: "0.2s" }}>
+          <div className="section-tag">Chrome Extension</div>
+          <h2>Approve directly inside QuickBooks</h2>
+          <p>
+            The ClawBooks sidebar lives inside QuickBooks Online. See every
+            pending invoice proposal without switching apps — approve or reject
+            while you're already in QB.
+          </p>
+          <ul className="mockup-list">
+            <li>✓ Sidebar embedded in QuickBooks Online</li>
+            <li>✓ Pending proposals with source context (📧 Email, 🔧 Manual)</li>
+            <li>✓ One-click approve or reject</li>
+            <li>✓ History tab with full audit trail</li>
+            <li>✓ Works alongside Telegram — use whichever is faster</li>
+          </ul>
+          <a
+            href="#cta"
+            className="btn-primary"
+            style={{ display: "inline-block", marginTop: "1.5rem" }}
+          >
+            Get the Extension →
+          </a>
         </div>
       </div>
     </section>
@@ -425,16 +538,16 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-logo">
-          <img
-            className="logo-image logo-image-footer"
-            src={logoSrc}
-            alt="ClawBooks"
-          />
+          <a href="#" className="footer-logo-link" aria-label="ClawBooks home">
+            <img className="logo-image logo-image-footer" src={logoSrc} alt="" />
+            <span className="app-title">ClawBooks</span>
+          </a>
           <span className="footer-tagline">AI accounting for modern teams</span>
         </div>
         <div className="footer-links">
           <a href="#features">Features</a>
           <a href="#how-it-works">How It Works</a>
+          <a href="#extension">Chrome Extension</a>
           <a href="https://openclaw.ai">Built on OpenClaw</a>
         </div>
         <div className="footer-copy">
@@ -456,6 +569,7 @@ export default function App() {
       <Features />
       <HowItWorks />
       <TelegramMockup />
+      <ExtensionMockup />
       <CTA />
       <Footer />
     </>
