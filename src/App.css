@@ -1023,9 +1023,6 @@
   .mockup-section {
     grid-template-columns: 1fr;
   }
-  .hero-visual {
-    order: -1;
-  }
   .mock-dashboard {
     max-width: 400px;
     margin: 0 auto;
