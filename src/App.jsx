@@ -41,10 +41,10 @@ function Navbar() {
           <span className="app-title">ClawBooks</span>
         </a>
         <div className="nav-links">
+          <a href="#who-its-for">Who It's For</a>
           <a href="#features">Features</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#interfaces">Interfaces</a>
-          <a href="#automations">Automations</a>
         </div>
         <a href="#cta" className="btn-primary nav-cta">
           Get Early Access
@@ -61,10 +61,10 @@ function Navbar() {
       </div>
       {menuOpen && (
         <div className="mobile-menu">
+          <a href="#who-its-for" onClick={close}>Who It's For</a>
           <a href="#features" onClick={close}>Features</a>
           <a href="#how-it-works" onClick={close}>How It Works</a>
           <a href="#interfaces" onClick={close}>Interfaces</a>
-          <a href="#automations" onClick={close}>Automations</a>
           <a href="#cta" className="btn-primary" onClick={close}>Get Early Access</a>
         </div>
       )}
@@ -128,21 +128,21 @@ function Hero() {
         <div className="hero-text">
           <div className="hero-badge">Powered by OpenClaw AI</div>
           <h1 className="hero-headline">
-            AI proposes.
+            Your AI Accountant.
             <br />
-            <span className="gradient-text">Humans approve.</span>
+            <span className="gradient-text">Zero Busywork.</span>
           </h1>
           <p className="hero-sub">
-            ClawBooks is an OpenClaw-powered AI copilot for QuickBooks that
-            proposes bill, invoice, and journal entry actions, automates
-            repetitive AP workflows, and keeps humans in control of final approvals.
+            ClawBooks helps bookkeepers and accountants move faster in
+            QuickBooks by turning incoming bills into ready-to-review work,
+            catching costly issues early, and keeping approvals in your hands.
           </p>
           <div className="hero-actions">
             <a href="#cta" className="btn-primary btn-lg">Get Early Access →</a>
             <a href="#how-it-works" className="btn-ghost btn-lg">See How It Works</a>
           </div>
           <p className="hero-note">
-            Built local-first today · Auditability and control by default
+            Built for faster close, cleaner books, and less manual follow-up
           </p>
         </div>
         <div className="hero-visual">
@@ -157,12 +157,12 @@ function Hero() {
 
 function LogoBar() {
   const logos = [
-    "QuickBooks via Maton",
-    "OpenClaw/Alfred",
-    "Telegram Bot API",
-    "Gmail IMAP",
-    "Gmail API",
-    "REST API",
+    "QuickBooks Online",
+    "Gmail",
+    "Telegram",
+    "Chrome Extension",
+    "Dashboard",
+    "OpenClaw AI",
   ];
   return (
     <div className="logo-bar">
@@ -223,48 +223,33 @@ function Features() {
   const features = [
     {
       icon: "📥",
-      title: "Multi-source intake",
-      desc: "Ingests accounting work from API payloads, email events, uploaded docs, and optional watch-folder ingestion.",
-    },
-    {
-      icon: "🧠",
-      title: "OCR + parsing + AI fallback",
-      desc: "Parses text, PDF, and image invoices with OCR and structured parsing, then falls back to AI interpretation when needed.",
-    },
-    {
-      icon: "🧾",
-      title: "Proposal generation",
-      desc: "Creates AI proposals for bill, invoice, or journal_entry transactions with stateful queue tracking.",
-    },
-    {
-      icon: "♻️",
-      title: "Recurring intelligence",
-      desc: "Detects recurring bills from vendor and amount history, with optional low-risk auto-approval under a configurable threshold.",
-    },
-    {
-      icon: "🛡️",
-      title: "Duplicate + anomaly detection",
-      desc: "Flags likely duplicates in a lookback window and highlights anomaly amounts above vendor history.",
-    },
-    {
-      icon: "📚",
-      title: "Vendor learning",
-      desc: "Learns vendor categorization from approvals and reuses account mappings for future proposals.",
-    },
-    {
-      icon: "✅",
-      title: "Approval controls everywhere",
-      desc: "Supports manual approve/reject in Telegram, the React dashboard, and the Chrome extension in QuickBooks Online.",
-    },
-    {
-      icon: "🔗",
-      title: "Reliable QuickBooks posting",
-      desc: "Posts approved proposals through the Maton gateway and can safely fall back to journal_entry posting when preferred types fail.",
+      title: "Invoice intake",
+      desc: "Bring in bills from your inbox, uploads, and connected workflows so work lands in one place.",
     },
     {
       icon: "🗂️",
-      title: "Auditability and history",
-      desc: "Persists queue state and audit events, with proposal history (pending/approved/rejected) plus attachment preview/download in extension.",
+      title: "Smart categorization",
+      desc: "Get draft coding suggestions for vendors and accounts that improve as you approve more work.",
+    },
+    {
+      icon: "🧾",
+      title: "Ready-to-review proposals",
+      desc: "ClawBooks prepares clean, reviewable entries so you can focus on judgment instead of data entry.",
+    },
+    {
+      icon: "♻️",
+      title: "Recurring bill automation",
+      desc: "Recognizes repeat vendor bills and can automate low-risk work under your rules.",
+    },
+    {
+      icon: "🛡️",
+      title: "Duplicate and anomaly alerts",
+      desc: "Spot potential duplicates and unusual amounts before they get posted.",
+    },
+    {
+      icon: "✅",
+      title: "Approvals and audit trail",
+      desc: "Approve or reject from dashboard, Telegram, or extension, with clear status history for every decision.",
     },
   ];
   return (
@@ -272,9 +257,9 @@ function Features() {
       <div className="container">
         <div className={`section-header fade-in ${inView ? "visible" : ""}`}>
           <div className="section-tag">Features</div>
-          <h2>Comprehensive AP copilot capabilities</h2>
+          <h2>Everything you need to run AP with confidence</h2>
           <p className="section-sub">
-            End-to-end from intake to proposal, approval, posting, and follow-up.
+            Less manual work, faster decisions, and more control over what gets posted.
           </p>
         </div>
         <div className="features-grid">
@@ -302,23 +287,23 @@ function HowItWorks() {
   const steps = [
     {
       n: "01",
-      title: "Intake from API, email, upload, or watch folders",
-      desc: "Accounting work enters from events, document uploads, and optional watcher flows — then lands in one proposal queue.",
+      title: "Bills come in from email and uploads",
+      desc: "ClawBooks pulls incoming vendor bills into one organized queue.",
     },
     {
       n: "02",
-      title: "AI builds a QuickBooks-ready proposal",
-      desc: "OCR/parsing extracts data and AI creates bill, invoice, or journal_entry proposals with duplicate and anomaly checks.",
+      title: "AI prepares draft entries",
+      desc: "You get suggested entries with key details already filled in and ready to review.",
     },
     {
       n: "03",
-      title: "Human approves, or low-risk recurring auto-approves",
-      desc: "Approvals happen in Telegram, dashboard, or extension. Optional auto-approval applies only to recurring bills under threshold.",
+      title: "You approve where you work",
+      desc: "Review in QuickBooks, Telegram, or the dashboard and approve or reject in seconds.",
     },
     {
       n: "04",
-      title: "Post, track, and automate follow-through",
-      desc: "Approved work posts to QuickBooks via Maton (with JE fallback), with audit events, digest automations, report workflows, and forecasts.",
+      title: "Posted and tracked automatically",
+      desc: "Approved items are synced and tracked with a clear history, so close is faster and cleaner.",
     },
   ];
   return (
@@ -361,15 +346,14 @@ function TelegramMockup() {
           <div className="section-tag">Telegram Workflow</div>
           <h2>Approval and digest workflows in Telegram</h2>
           <p>
-            Telegram handles fast approve/reject loops, overdue follow-up
-            digests, weekly summaries, and report delivery notifications.
+            Stay on top of approvals without living in another dashboard.
+            Telegram keeps you moving with quick decision prompts and reminders.
           </p>
           <ul className="mockup-list">
-            <li>✓ Approve/reject proposals instantly</li>
-            <li>✓ Receive overdue follow-up digests (weekdays morning)</li>
-            <li>✓ Weekly summary dispatch (Monday morning)</li>
-            <li>✓ Report notifications and workflow alerts</li>
-            <li>✓ End-to-end audit visibility from the same thread</li>
+            <li>✓ Instant approve or reject prompts</li>
+            <li>✓ Daily reminders for overdue follow-up</li>
+            <li>✓ Weekly summary notifications</li>
+            <li>✓ Clear status confirmations after decisions</li>
           </ul>
         </div>
         <div
@@ -529,15 +513,14 @@ function ExtensionMockup() {
           <div className="section-tag">Interfaces</div>
           <h2>Works inside QuickBooks and outside it</h2>
           <p>
-            ClawBooks supports every working style: React dashboard, Chrome
-            extension in QuickBooks Online, Telegram prompts, and REST API orchestration.
+            Your team can work from the ClawBooks dashboard, QuickBooks extension,
+            or Telegram without losing context.
           </p>
           <ul className="mockup-list">
-            <li>✓ React dashboard for queue, status, and automation visibility</li>
-            <li>✓ QuickBooks extension for inline approve/reject + history</li>
-            <li>✓ Telegram approvals and digest notifications</li>
-            <li>✓ REST API for OpenClaw/agent orchestration control</li>
-            <li>✓ Attachment preview/download in extension history</li>
+            <li>✓ Dashboard for queue, status, and review</li>
+            <li>✓ QuickBooks extension for inline approvals</li>
+            <li>✓ Telegram for rapid decision-making</li>
+            <li>✓ Proposal history and attachment access</li>
           </ul>
           <a
             href="#cta"
@@ -546,91 +529,6 @@ function ExtensionMockup() {
           >
             Get the Extension →
           </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AutomationsAndReports() {
-  const [ref, inView] = useInView();
-  const automationDefaults = [
-    "Recurring detection enabled",
-    "Duplicate detection enabled",
-    "Anomaly detection enabled",
-    "Overdue follow-up digests on weekday mornings",
-    "Weekly summary on Monday mornings",
-    "Cash-flow forecasts at 30 and 60 days",
-    "Configurable document upload watcher",
-  ];
-  const reportWorkflows = [
-    "Natural-language report dispatch: expense report, invoice summary, P&L, AR aging, weekly summary",
-    "Client report-email drafts queued as approval proposals before send",
-    "Approved client emails sent via Gmail API with attachments",
-  ];
-  return (
-    <section className="section" id="automations" ref={ref}>
-      <div className="container">
-        <div className={`section-header fade-in ${inView ? "visible" : ""}`}>
-          <div className="section-tag">Automations + Reports</div>
-          <h2>Reduce repetitive work without losing control</h2>
-          <p className="section-sub">
-            Automation defaults are opinionated, configurable, and still centered on reviewable approvals.
-          </p>
-        </div>
-        <div className={`info-grid-two fade-in ${inView ? "visible" : ""}`}>
-          <div className="feature-card">
-            <h3>Default automation posture</h3>
-            <ul className="bullet-list">
-              {automationDefaults.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </div>
-          <div className="feature-card">
-            <h3>Report and response workflows</h3>
-            <ul className="bullet-list">
-              {reportWorkflows.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TrustAndScope() {
-  const [ref, inView] = useInView();
-  const trustPoints = [
-    "Human-in-the-loop approvals by default",
-    "Optional auto-approval only for low-risk recurring bills under threshold",
-    "Audit log for created/approved/rejected/automation events",
-    "Queue + state persistence for operational continuity",
-  ];
-  const scopeNotes = [
-    "Local-first app today (localhost API + local extension connection)",
-    "Chrome extension targets QuickBooks Online domains",
-    "Telegram callback processing is designed to run via OpenClaw orchestration",
-    "Outbound email sender handling currently uses an allowlist pattern",
-  ];
-  return (
-    <section className="section section-dark" id="scope" ref={ref}>
-      <div className="container">
-        <div className={`section-header fade-in ${inView ? "visible" : ""}`}>
-          <div className="section-tag">Trust + Current Scope</div>
-          <h2>Built for speed, control, and auditability</h2>
-        </div>
-        <div className={`info-grid-two fade-in ${inView ? "visible" : ""}`}>
-          <div className="feature-card">
-            <h3>Control and traceability</h3>
-            <ul className="bullet-list">
-              {trustPoints.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </div>
-          <div className="feature-card">
-            <h3>Current deployment scope</h3>
-            <ul className="bullet-list">
-              {scopeNotes.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </div>
         </div>
       </div>
     </section>
@@ -692,11 +590,10 @@ function Footer() {
           <span className="footer-tagline">AI accounting for modern teams</span>
         </div>
         <div className="footer-links">
+          <a href="#who-its-for">Who It's For</a>
           <a href="#features">Features</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#interfaces">Interfaces</a>
-          <a href="#automations">Automations</a>
-          <a href="#scope">Scope</a>
           <a href="https://openclaw.ai">Built on OpenClaw</a>
         </div>
         <div className="footer-copy">
@@ -720,8 +617,6 @@ export default function App() {
       <HowItWorks />
       <TelegramMockup />
       <ExtensionMockup />
-      <AutomationsAndReports />
-      <TrustAndScope />
       <CTA />
       <Footer />
     </>
