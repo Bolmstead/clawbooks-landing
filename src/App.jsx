@@ -248,7 +248,7 @@ function WhoItsFor() {
     "Drafting the same client emails every month",
     "Missing recurring transactions and adjustments",
     "No time left for actual accounting work",
-    "Slow close拖慢了整个进度",
+    "Slow monthly close kills your productivity",
   ];
   return (
     <section className="section" id="who-its-for" ref={ref}>
