@@ -42,7 +42,7 @@ function Navbar() {
         </a>
         <div className="nav-links">
           <a href="#who-its-for">Who It's For</a>
-          <a href="#features">Features</a>
+          <a href="#features">What It Does</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#interfaces">Interfaces</a>
         </div>
@@ -62,7 +62,7 @@ function Navbar() {
       {menuOpen && (
         <div className="mobile-menu">
           <a href="#who-its-for" onClick={close}>Who It's For</a>
-          <a href="#features" onClick={close}>Features</a>
+          <a href="#features" onClick={close}>What It Does</a>
           <a href="#how-it-works" onClick={close}>How It Works</a>
           <a href="#interfaces" onClick={close}>Interfaces</a>
           <a href="#cta" className="btn-primary" onClick={close}>Get Early Access</a>
@@ -72,46 +72,106 @@ function Navbar() {
   );
 }
 
-// ─── Hero ────────────────────────────────────────────────────────────────────
+// ─── Hero Mockup ────────────────────────────────────────────────────────────
 
-function MockDashboard() {
+function HeroMockup() {
   const [step, setStep] = useState(0);
+  const [demoType, setDemoType] = useState("entry");
+  
   useEffect(() => {
-    const t = setInterval(() => setStep((s) => (s + 1) % 3), 2000);
+    const t = setInterval(() => setStep((s) => (s + 1) % 3), 2500);
     return () => clearInterval(t);
   }, []);
-  const steps = ["scanning", "extracting", "ready"];
-  const labels = ["Scanning inbox…", "AI extracting data…", "✓ Ready for approval"];
+  
+  const steps = ["analyzing", "processing", "ready"];
+  const labels = ["Analyzing emails & attachments...", "Processing transactions...", "✓ Ready for review"];
+  
+  const entryData = {
+    date: "2026-02-28",
+    desc: "Acme Design Co. - INV-1042",
+    debit: "2,450.00",
+    credit: "2,450.00",
+    account: "Accounts Payable"
+  };
+  
+  const emailDraft = {
+    to: "john@acmebusiness.com",
+    subject: "February 2026 Financial Summary",
+    body: "Hi John,\n\nHere's your monthly financial summary..."
+  };
+  
+  const adjustData = {
+    reason: "Prepaid expense allocation",
+    impact: "+$500 Net Income",
+    account: "Prepaid Expenses → Supplies"
+  };
+
   return (
-    <div className="mock-dashboard">
+    <div className="hero-mockup">
       <div className="mock-header">
         <div className="mock-dots">
           <span /><span /><span />
         </div>
         <span className="mock-title">ClawBooks Dashboard</span>
       </div>
-      <div className="mock-invoice">
-        <div className="mock-invoice-row">
-          <span className="mock-label">From</span>
-          <span className="mock-value">Acme Design Co.</span>
-        </div>
-        <div className="mock-invoice-row">
-          <span className="mock-label">Invoice #</span>
-          <span className="mock-value">INV-1042</span>
-        </div>
-        <div className="mock-invoice-row">
-          <span className="mock-label">Amount</span>
-          <span className="mock-value accent">$2,450.00</span>
-        </div>
-        <div className="mock-invoice-row">
-          <span className="mock-label">Received via</span>
-          <span className="mock-value">📧 Email</span>
-        </div>
+      
+      <div className="mock-tabs">
+        <button className={demoType === "entry" ? "active" : ""} onClick={() => { setDemoType("entry"); setStep(0); }}>Journal Entry</button>
+        <button className={demoType === "email" ? "active" : ""} onClick={() => { setDemoType("email"); setStep(0); }}>Client Email</button>
+        <button className={demoType === "adjust" ? "active" : ""} onClick={() => { setDemoType("adjust"); setStep(0); }}>Adjustment</button>
       </div>
+      
+      <div className="mock-content">
+        {demoType === "entry" && (
+          <div className="mock-entry">
+            <div className="mock-entry-header">
+              <span className="mock-entry-icon">📄</span>
+              <span>Invoice from Acme Design Co.</span>
+            </div>
+            <div className="mock-entry-body">
+              <div className="mock-row"><span>Date:</span><strong>{entryData.date}</strong></div>
+              <div className="mock-row"><span>Description:</span><strong>{entryData.desc}</strong></div>
+              <div className="mock-row"><span>Debit:</span><strong>${entryData.debit}</strong></div>
+              <div className="mock-row"><span>Credit:</span><strong>${entryData.credit}</strong></div>
+              <div className="mock-row"><span>Account:</span><strong>{entryData.account}</strong></div>
+            </div>
+          </div>
+        )}
+        
+        {demoType === "email" && (
+          <div className="mock-email">
+            <div className="mock-email-header">
+              <span className="mock-email-icon">✉️</span>
+              <span>Draft email for client</span>
+            </div>
+            <div className="mock-email-body">
+              <div className="mock-row"><span>To:</span><strong>{emailDraft.to}</strong></div>
+              <div className="mock-row"><span>Subject:</span><strong>{emailDraft.subject}</strong></div>
+              <div className="mock-email-text">{emailDraft.body}</div>
+            </div>
+          </div>
+        )}
+        
+        {demoType === "adjust" && (
+          <div className="mock-adjust">
+            <div className="mock-adjust-header">
+              <span className="mock-adjust-icon">⚙️</span>
+              <span>Suggested adjustment</span>
+            </div>
+            <div className="mock-adjust-body">
+              <div className="mock-row"><span>Reason:</span><strong>{adjustData.reason}</strong></div>
+              <div className="mock-row impact"><span>Impact:</span><strong>{adjustData.impact}</strong></div>
+              <div className="mock-row"><span>Entry:</span><strong>{adjustData.account}</strong></div>
+            </div>
+          </div>
+        )}
+      </div>
+      
       <div className={`mock-status ${steps[step]}`}>
         <div className="mock-pulse" />
         <span>{labels[step]}</span>
       </div>
+      
       <div className="mock-actions">
         <button className="mock-approve">✓ Approve</button>
         <button className="mock-reject">✕ Reject</button>
@@ -128,25 +188,25 @@ function Hero() {
         <div className="hero-text">
           <div className="hero-badge">Powered by OpenClaw AI</div>
           <h1 className="hero-headline">
-            Your AI Accountant.
+            Your AI Bookkeeper.
             <br />
-            <span className="gradient-text">Zero Busywork.</span>
+            <span className="gradient-text">Does the work. You approve.</span>
           </h1>
           <p className="hero-sub">
-            ClawBooks helps bookkeepers and accountants move faster in
-            QuickBooks by turning incoming bills into ready-to-review work,
-            catching costly issues early, and keeping approvals in your hands.
+            ClawBooks reads your emails, invoices, and bank feeds — then drafts 
+            journal entries, client emails, and adjustments for you. Just review 
+            and approve.
           </p>
           <div className="hero-actions">
             <a href="#cta" className="btn-primary btn-lg">Get Early Access →</a>
             <a href="#how-it-works" className="btn-ghost btn-lg">See How It Works</a>
           </div>
           <p className="hero-note">
-            Built for faster close, cleaner books, and less manual follow-up
+            Bookkeepers: stop doing data entry. Start doing actual accounting.
           </p>
         </div>
         <div className="hero-visual">
-          <MockDashboard />
+          <HeroMockup />
         </div>
       </div>
     </section>
@@ -180,26 +240,26 @@ function WhoItsFor() {
   const [ref, inView] = useInView();
   const audience = [
     "Bookkeepers and accountants using QuickBooks Online",
-    "Small firms managing recurring vendor bills",
-    "Finance teams that need faster close with auditability",
+    "Small firms handling 20+ client books",
+    "Finance teams that need faster monthly close",
   ];
   const problems = [
-    "Too much manual invoice review and coding",
-    "Duplicate bills slipping through",
-    "Slow approve/reject loops",
-    "Missing follow-up on overdue payables",
-    "No consistent workflow for report requests and client response drafts",
+    "Hours spent manually entering transactions",
+    "Drafting the same client emails every month",
+    "Missing recurring transactions and adjustments",
+    "No time left for actual accounting work",
+    "Slow close拖慢了整个进度",
   ];
   return (
     <section className="section" id="who-its-for" ref={ref}>
       <div className="container">
         <div className={`section-header fade-in ${inView ? "visible" : ""}`}>
           <div className="section-tag">Who It&apos;s For</div>
-          <h2>Built for bookkeeping teams that need speed and control</h2>
+          <h2>Built for bookkeepers who'd rather do accounting than data entry</h2>
         </div>
         <div className={`info-grid-two fade-in ${inView ? "visible" : ""}`}>
           <div className="feature-card">
-            <h3>Teams that benefit most</h3>
+            <h3>Who benefits most</h3>
             <ul className="bullet-list">
               {audience.map((item) => <li key={item}>{item}</li>)}
             </ul>
@@ -223,43 +283,43 @@ function Features() {
   const features = [
     {
       icon: "📥",
-      title: "Invoice intake",
-      desc: "Bring in bills from your inbox, uploads, and connected workflows so work lands in one place.",
+      title: "Reads everything",
+      desc: "Processes invoices from email, bank transactions, receipts, and PDFs. No manual data entry needed.",
     },
     {
-      icon: "🗂️",
-      title: "Smart categorization",
-      desc: "Get draft coding suggestions for vendors and accounts that improve as you approve more work.",
+      icon: "✍️",
+      title: "Drafts journal entries",
+      desc: "Creates ready-to-post entries with proper accounts, descriptions, and categorization.",
     },
     {
-      icon: "🧾",
-      title: "Ready-to-review proposals",
-      desc: "ClawBooks prepares clean, reviewable entries so you can focus on judgment instead of data entry.",
+      icon: "✉️",
+      title: "Writes client emails",
+      desc: "Drafts monthly summaries, follow-ups, and requests — you approve before sending.",
     },
     {
-      icon: "♻️",
-      title: "Recurring bill automation",
-      desc: "Recognizes repeat vendor bills and can automate low-risk work under your rules.",
+      icon: "⚙️",
+      title: "Spots adjustments",
+      desc: "Identifies prepaid expenses, accruals, and recurring items that need attention.",
     },
     {
       icon: "🛡️",
-      title: "Duplicate and anomaly alerts",
-      desc: "Spot potential duplicates and unusual amounts before they get posted.",
+      title: "Catches errors",
+      desc: "Flags duplicates, unusual amounts, and potential issues before they hit the books.",
     },
     {
       icon: "✅",
-      title: "Approvals and audit trail",
-      desc: "Approve or reject from dashboard, Telegram, or extension, with clear status history for every decision.",
+      title: "You stay in control",
+      desc: "Approve everything from dashboard, Telegram, or QuickBooks. Full audit trail included.",
     },
   ];
   return (
     <section className="section" id="features" ref={ref}>
       <div className="container">
         <div className={`section-header fade-in ${inView ? "visible" : ""}`}>
-          <div className="section-tag">Features</div>
-          <h2>Everything you need to run AP with confidence</h2>
+          <div className="section-tag">What It Does</div>
+          <h2>Your AI teammate that handles the busywork</h2>
           <p className="section-sub">
-            Less manual work, faster decisions, and more control over what gets posted.
+            ClawBooks does the grunt work. You focus on quality control and client relationships.
           </p>
         </div>
         <div className="features-grid">
@@ -280,30 +340,30 @@ function Features() {
   );
 }
 
-// ─── How It Works ────────────────────────────────────────────────────────────
+// ─── How It Works ───────────────────────────────────────────────────────────
 
 function HowItWorks() {
   const [ref, inView] = useInView();
   const steps = [
     {
       n: "01",
-      title: "Bills come in from email and uploads",
-      desc: "ClawBooks pulls incoming vendor bills into one organized queue.",
+      title: "Connect your tools",
+      desc: "Link QuickBooks, email, and bank feeds. ClawBooks starts reading automatically.",
     },
     {
       n: "02",
-      title: "AI prepares draft entries",
-      desc: "You get suggested entries with key details already filled in and ready to review.",
+      title: "AI does the processing",
+      desc: "It reads invoices, categorizes transactions, and identifies what needs attention.",
     },
     {
       n: "03",
-      title: "You approve where you work",
-      desc: "Review in QuickBooks, Telegram, or the dashboard and approve or reject in seconds.",
+      title: "You get proposals",
+      desc: "Draft entries, emails, and adjustments land in your queue — ready for review.",
     },
     {
       n: "04",
-      title: "Posted and tracked automatically",
-      desc: "Approved items are synced and tracked with a clear history, so close is faster and cleaner.",
+      title: "One click to approve",
+      desc: "Review and approve in seconds. Posted to QuickBooks with full audit history.",
     },
   ];
   return (
@@ -311,7 +371,7 @@ function HowItWorks() {
       <div className="container">
         <div className={`section-header fade-in ${inView ? "visible" : ""}`}>
           <div className="section-tag">How It Works</div>
-          <h2>Four steps. Control at every stage.</h2>
+          <h2>Four steps. You never touch the boring stuff.</h2>
         </div>
         <div className="steps">
           {steps.map((s, i) => (
@@ -339,21 +399,22 @@ function HowItWorks() {
 function TelegramMockup() {
   const [ref, inView] = useInView();
   const [approved, setApproved] = useState(null);
+  
   return (
     <section className="section" ref={ref}>
       <div className="container mockup-section">
         <div className={`mockup-text fade-in ${inView ? "visible" : ""}`}>
           <div className="section-tag">Telegram Workflow</div>
-          <h2>Approval and digest workflows in Telegram</h2>
+          <h2>Handle bookkeeping from your phone</h2>
           <p>
-            Stay on top of approvals without living in another dashboard.
-            Telegram keeps you moving with quick decision prompts and reminders.
+            Approve entries, review emails, and respond to alerts — without opening 
+            your laptop. ClawBooks meets you where you already work.
           </p>
           <ul className="mockup-list">
-            <li>✓ Instant approve or reject prompts</li>
-            <li>✓ Daily reminders for overdue follow-up</li>
-            <li>✓ Weekly summary notifications</li>
-            <li>✓ Clear status confirmations after decisions</li>
+            <li>✓ Instant approve/reject for entries</li>
+            <li>✓ Review and send drafted client emails</li>
+            <li>✓ Alerts for duplicates and anomalies</li>
+            <li>✓ Daily digest of what needs attention</li>
           </ul>
         </div>
         <div
@@ -374,26 +435,22 @@ function TelegramMockup() {
               </div>
               <div className="tg-messages">
                 <div className="tg-msg">
-                  <div className="tg-msg-title">📋 Pending QuickBooks approval</div>
-                  <div className="tg-msg-row">
-                    <span>Received via</span>
-                    <strong>📧 Email</strong>
-                  </div>
+                  <div className="tg-msg-title">📋 Journal Entry Ready</div>
                   <div className="tg-msg-row">
                     <span>From</span>
-                    <strong>billing@acme.com</strong>
-                  </div>
-                  <div className="tg-msg-row">
-                    <span>Subject</span>
-                    <strong>Invoice INV-1042</strong>
+                    <strong>Acme Design Co.</strong>
                   </div>
                   <div className="tg-msg-row">
                     <span>Amount</span>
                     <strong className="accent">$2,450.00</strong>
                   </div>
                   <div className="tg-msg-row">
-                    <span>Due</span>
-                    <strong>March 1, 2026</strong>
+                    <span>Account</span>
+                    <strong>Accounts Payable</strong>
+                  </div>
+                  <div className="tg-msg-row">
+                    <span>Type</span>
+                    <strong>📄 Invoice</strong>
                   </div>
                   {approved === null && (
                     <div className="tg-btns">
@@ -402,10 +459,10 @@ function TelegramMockup() {
                     </div>
                   )}
                   {approved === true && (
-                    <div className="tg-confirmed">✅ Approved and posted to QuickBooks!</div>
+                    <div className="tg-confirmed">✅ Approved & posted!</div>
                   )}
                   {approved === false && (
-                    <div className="tg-rejected">❌ Proposal rejected.</div>
+                    <div className="tg-rejected">❌ Rejected.</div>
                   )}
                 </div>
               </div>
@@ -423,9 +480,9 @@ function ExtensionMockup() {
   const [ref, inView] = useInView();
   const [activeTab, setActiveTab] = useState("pending");
   const proposals = [
-    { vendor: "Acme Design Co.", amount: "$2,450.00", via: "📧 Email", status: "pending" },
-    { vendor: "Adobe Inc.", amount: "$54.99", via: "📧 Email", status: "pending" },
-    { vendor: "Figma", amount: "$45.00", via: "📧 Email", status: "pending" },
+    { type: "Entry", vendor: "Acme Design", amount: "$2,450.00", status: "pending" },
+    { type: "Email", vendor: "Client Update", amount: "", status: "pending" },
+    { type: "Adjust", vendor: "Prepaid allocation", amount: "+$500", status: "pending" },
   ];
   return (
     <section className="section section-dark" id="interfaces" ref={ref}>
@@ -438,7 +495,7 @@ function ExtensionMockup() {
               <div className="browser-dots">
                 <span /><span /><span />
               </div>
-              <div className="browser-url">app.qbo.intuit.com/app/bills</div>
+              <div className="browser-url">app.qbo.intuit.com</div>
               <div className="browser-ext-badge">🧩 ClawBooks</div>
             </div>
             <div className="browser-content">
@@ -475,11 +532,11 @@ function ExtensionMockup() {
                         <div key={i} className="sidebar-proposal">
                           <div className="sp-vendor">{p.vendor}</div>
                           <div className="sp-meta">
-                            <span className="sp-amount">{p.amount}</span>
-                            <span className="sp-via">{p.via}</span>
+                            <span className="sp-type">{p.type}</span>
+                            {p.amount && <span className="sp-amount">{p.amount}</span>}
                           </div>
                           <div className="sp-actions">
-                            <button className="sp-approve">✓ Approve</button>
+                            <button className="sp-approve">✓</button>
                             <button className="sp-reject">✕</button>
                           </div>
                         </div>
@@ -489,17 +546,17 @@ function ExtensionMockup() {
                   {activeTab === "history" && (
                     <div className="sidebar-proposals">
                       <div className="sidebar-proposal approved-row">
-                        <div className="sp-vendor">Notion</div>
+                        <div className="sp-vendor">Acme Design</div>
                         <div className="sp-meta">
-                          <span className="sp-amount">$16.00</span>
-                          <span className="sp-approved-label">✅ Approved</span>
+                          <span className="sp-amount">$2,450.00</span>
+                          <span className="sp-approved-label">✅</span>
                         </div>
                       </div>
-                      <div className="sidebar-proposal rejected-row">
-                        <div className="sp-vendor">Unknown Vendor</div>
+                      <div className="sidebar-proposal approved-row">
+                        <div className="sp-vendor">Monthly Summary</div>
                         <div className="sp-meta">
-                          <span className="sp-amount">$999.00</span>
-                          <span className="sp-rejected-label">❌ Rejected</span>
+                          <span className="sp-type">Email</span>
+                          <span className="sp-approved-label">✅</span>
                         </div>
                       </div>
                     </div>
@@ -511,23 +568,23 @@ function ExtensionMockup() {
         </div>
         <div className={`mockup-text fade-in ${inView ? "visible" : ""}`} style={{ transitionDelay: "0.2s" }}>
           <div className="section-tag">Interfaces</div>
-          <h2>Works inside QuickBooks and outside it</h2>
+          <h2>Works where you work</h2>
           <p>
-            Your team can work from the ClawBooks dashboard, QuickBooks extension,
-            or Telegram without losing context.
+            Full dashboard for deep work. Telegram for quick approvals. 
+            QuickBooks extension for inline decisions.
           </p>
           <ul className="mockup-list">
-            <li>✓ Dashboard for queue, status, and review</li>
-            <li>✓ QuickBooks extension for inline approvals</li>
-            <li>✓ Telegram for rapid decision-making</li>
-            <li>✓ Proposal history and attachment access</li>
+            <li>✓ Dashboard for deep work</li>
+            <li>✓ QuickBooks extension for inline review</li>
+            <li>✓ Telegram for approvals on the go</li>
+            <li>✓ Full history and audit trail</li>
           </ul>
           <a
             href="#cta"
             className="btn-primary"
             style={{ display: "inline-block", marginTop: "1.5rem" }}
           >
-            Get the Extension →
+            Get Early Access →
           </a>
         </div>
       </div>
@@ -545,8 +602,8 @@ function CTA() {
     <section className="section cta-section" id="cta" ref={ref}>
       <div className="cta-glow" />
       <div className={`container cta-inner fade-in ${inView ? "visible" : ""}`}>
-        <h2>Start automating your books today</h2>
-        <p>Join the waitlist. Be first when we launch.</p>
+        <h2>Stop doing data entry. Start doing accounting.</h2>
+        <p>Join the waitlist. First 50 bookkeepers get early access.</p>
         {!submitted ? (
           <form
             className="cta-form"
@@ -587,11 +644,11 @@ function Footer() {
             <img className="logo-image logo-image-footer" src={logoSrc} alt="" />
             <span className="app-title">ClawBooks</span>
           </a>
-          <span className="footer-tagline">AI accounting for modern teams</span>
+          <span className="footer-tagline">AI bookkeeping for modern accountants</span>
         </div>
         <div className="footer-links">
           <a href="#who-its-for">Who It's For</a>
-          <a href="#features">Features</a>
+          <a href="#features">What It Does</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#interfaces">Interfaces</a>
           <a href="https://openclaw.ai">Built on OpenClaw</a>

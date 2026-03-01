@@ -238,12 +238,120 @@
 }
 
 /* ── Mock Dashboard ─────────────────────────────────────────────────────── */
-.mock-dashboard {
+.mock-dashboard,
+.hero-mockup {
   background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(14, 60, 39, 0.12);
+}
+
+.hero-mockup {
+  padding-bottom: 16px;
+}
+
+.mock-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+
+.mock-tabs button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.mock-tabs button:hover {
+  color: var(--text);
+}
+
+.mock-tabs button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.mock-content {
+  padding: 16px;
+  min-height: 140px;
+}
+
+.mock-entry,
+.mock-email,
+.mock-adjust {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mock-entry-header,
+.mock-email-header,
+.mock-adjust-header {
+  background: rgba(55, 194, 111, 0.08);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+
+.mock-entry-icon,
+.mock-email-icon,
+.mock-adjust-icon {
+  font-size: 16px;
+}
+
+.mock-entry-body,
+.mock-email-body,
+.mock-adjust-body {
+  padding: 14px;
+}
+
+.mock-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(11, 29, 20, 0.06);
+}
+
+.mock-row:last-child {
+  border-bottom: none;
+}
+
+.mock-row span {
+  color: var(--muted);
+}
+
+.mock-row strong {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.mock-row.impact strong {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.mock-email-text {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  white-space: pre-wrap;
 }
 .mock-header {
   background: var(--bg2);
