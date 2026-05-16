@@ -6,6 +6,7 @@
 }
 .section {
   padding: 100px 0;
+  scroll-margin-top: 96px;
 }
 .section-dark {
   background: #ffffff;
@@ -235,6 +236,28 @@
 .hero-note {
   color: var(--muted);
   font-size: 13px;
+}
+
+/* ── Demo Video ─────────────────────────────────────────────────────────── */
+.demo-section {
+  margin-top: -96px;
+  padding-top: 96px;
+}
+.demo-video-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #0b1d14;
+  box-shadow: 0 24px 56px rgba(14, 60, 39, 0.16);
+}
+.demo-video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* ── Mock Dashboard ─────────────────────────────────────────────────────── */

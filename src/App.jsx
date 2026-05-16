@@ -42,6 +42,7 @@ function Navbar() {
         </a>
         <div className="nav-links">
           <a href="#who-its-for">Who It's For</a>
+          <a href="#demo">Demo</a>
           <a href="#features">What It Does</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#interfaces">Interfaces</a>
@@ -62,6 +63,7 @@ function Navbar() {
       {menuOpen && (
         <div className="mobile-menu">
           <a href="#who-its-for" onClick={close}>Who It's For</a>
+          <a href="#demo" onClick={close}>Demo</a>
           <a href="#features" onClick={close}>What It Does</a>
           <a href="#how-it-works" onClick={close}>How It Works</a>
           <a href="#interfaces" onClick={close}>Interfaces</a>
@@ -200,7 +202,7 @@ function Hero() {
           <div className="hero-actions">
             <a href="#cta" className="btn-primary btn-lg">Get Early Access →</a>
             <a href="#how-it-works" className="btn-ghost btn-lg">See How It Works</a>
-            <a href="https://www.loom.com/share/9443e881395442f4a7bea412d8af8365" target="_blank" rel="noopener noreferrer" className="btn-ghost btn-lg">▶ Watch Demo</a>
+            <a href="#demo" className="btn-ghost btn-lg">▶ Watch Demo</a>
           </div>
           <p className="hero-note">
             Bookkeepers: stop doing data entry. Start doing actual accounting.
@@ -208,6 +210,26 @@ function Hero() {
         </div>
         <div className="hero-visual">
           <HeroMockup />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DemoVideo() {
+  const [ref, inView] = useInView();
+
+  return (
+    <section className="section demo-section" id="demo" ref={ref}>
+      <div className="container">
+        <div className={`demo-video-wrap fade-in ${inView ? "visible" : ""}`}>
+          <iframe
+            src="https://www.loom.com/embed/9443e881395442f4a7bea412d8af8365"
+            title="ClawBooks demo video"
+            frameBorder="0"
+            allow="fullscreen; picture-in-picture"
+            allowFullScreen
+          />
         </div>
       </div>
     </section>
@@ -669,6 +691,7 @@ export default function App() {
     <>
       <Navbar />
       <Hero />
+      <DemoVideo />
       <LogoBar />
       <WhoItsFor />
       <Features />
