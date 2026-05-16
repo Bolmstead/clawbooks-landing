@@ -200,6 +200,7 @@ function Hero() {
           <div className="hero-actions">
             <a href="#cta" className="btn-primary btn-lg">Get Early Access →</a>
             <a href="#how-it-works" className="btn-ghost btn-lg">See How It Works</a>
+            <a href="https://www.loom.com/share/9443e881395442f4a7bea412d8af8365" target="_blank" rel="noopener noreferrer" className="btn-ghost btn-lg">▶ Watch Demo</a>
           </div>
           <p className="hero-note">
             Bookkeepers: stop doing data entry. Start doing actual accounting.
