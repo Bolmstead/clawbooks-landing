@@ -239,9 +239,8 @@
 }
 
 /* ── Demo Video ─────────────────────────────────────────────────────────── */
-.demo-section {
-  margin-top: -96px;
-  padding-top: 96px;
+.hero-video-panel {
+  scroll-margin-top: 120px;
 }
 .demo-video-wrap {
   position: relative;

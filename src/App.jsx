@@ -182,6 +182,20 @@ function HeroMockup() {
   );
 }
 
+function LoomDemoEmbed() {
+  return (
+    <div className="demo-video-wrap">
+      <iframe
+        src="https://www.loom.com/embed/9443e881395442f4a7bea412d8af8365"
+        title="ClawBooks demo video"
+        frameBorder="0"
+        allow="fullscreen; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="hero">
@@ -208,28 +222,8 @@ function Hero() {
             Bookkeepers: stop doing data entry. Start doing actual accounting.
           </p>
         </div>
-        <div className="hero-visual">
-          <HeroMockup />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DemoVideo() {
-  const [ref, inView] = useInView();
-
-  return (
-    <section className="section demo-section" id="demo" ref={ref}>
-      <div className="container">
-        <div className={`demo-video-wrap fade-in ${inView ? "visible" : ""}`}>
-          <iframe
-            src="https://www.loom.com/embed/9443e881395442f4a7bea412d8af8365"
-            title="ClawBooks demo video"
-            frameBorder="0"
-            allow="fullscreen; picture-in-picture"
-            allowFullScreen
-          />
+        <div className="hero-visual hero-video-panel" id="demo">
+          <LoomDemoEmbed />
         </div>
       </div>
     </section>
@@ -691,7 +685,6 @@ export default function App() {
     <>
       <Navbar />
       <Hero />
-      <DemoVideo />
       <LogoBar />
       <WhoItsFor />
       <Features />
