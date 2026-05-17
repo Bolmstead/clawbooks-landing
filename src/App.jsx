@@ -216,7 +216,6 @@ function Hero() {
           <div className="hero-actions">
             <a href="#cta" className="btn-primary btn-lg">Get Early Access →</a>
             <a href="#how-it-works" className="btn-ghost btn-lg">See How It Works</a>
-            <a href="#demo" className="btn-ghost btn-lg">▶ Watch Demo</a>
           </div>
           <p className="hero-note">
             Bookkeepers: stop doing data entry. Start doing actual accounting.
